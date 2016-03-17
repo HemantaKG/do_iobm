@@ -1,0 +1,7 @@
+(None, '1+0 records in\n1+0 records out\n1000000000 bytes (1.0 GB) copied, 2.15287 s, 464 MB/s\n')thread0
+(None, '1+0 records in\n1+0 records out\n10000000 bytes (10 MB) copied, 0.0754153 s, 133 MB/s\n')thread0
+(None, '5+0 records in\n5+0 records out\n5000000000 bytes (5.0 GB) copied, 17.8956 s, 279 MB/s\n')thread0
+(None, '10+0 records in\n10+0 records out\n10000000000 bytes (10 GB) copied, 24.6985 s, 405 MB/s\n')thread0
+(None, '1+0 records in\n1+0 records out\n100000000 bytes (100 MB) copied, 0.547994 s, 182 MB/s\n')thread0
+(None, '1+0 records in\n1+0 records out\n1000000 bytes (1.0 MB) copied, 0.0774518 s, 12.9 MB/s\n')thread0
+(None, '1+0 records in\n1+0 records out\n100000 bytes (100 kB) copied, 0.0683891 s, 1.5 MB/s\n')thread0
