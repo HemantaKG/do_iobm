@@ -35,13 +35,13 @@ def iobm_multithread_read(threadName, i):
     size= int(i* 1000) # block size in KB
     if size <= 1000000:
 #    	free_drivecache()
-        cmddd= "dd if=/home/hemanta.g/file"+str(size)+" of=/tmp/file"+str(size) + " bs="+str(size)+"kB count=1"
+        cmddd= "dd if=/home/hemanta.g/iotest/file"+str(size)+" of=/tmp/file"+str(size) + " bs="+str(size)+"kB count=1"
         p= subprocess.Popen(cmddd, shell=True, stderr=subprocess.PIPE)
         ts_end= datetime.datetime.now()
         wr= str(p.communicate())+threadName+'\n'
     else:
 #	free_drivecache()
-        cmddd= "dd if=/home/hemanta.g/file1000000 of=/tmp/file1000000 bs=1000000kB count="+str(i/1000)
+        cmddd= "dd if=/home/hemanta.g/iotest/file1000000 of=/tmp/file1000000 bs=1000000kB count="+str(i/1000)
         p= subprocess.Popen(cmddd, shell=True, stderr=subprocess.PIPE)
         wr= str(p.communicate())+threadName+'\n'
     out_write.write(wr)
