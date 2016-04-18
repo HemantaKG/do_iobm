@@ -27,22 +27,23 @@ class iobmThread (threading.Thread):
 			time.sleep(10)
 	#print "Exiting " + self.name
 
-def free_drivecache():
-    cmd_free_cache= "sync && sh -c 'echo 3 > /proc/sys/vm/drop_caches'"
-    subprocess.Popen(cmd_free_cache, shell=True)
+#the function free_drivecache(), flushs the cache memory while io operaqtions...
+#def free_drivecache():
+#    cmd_free_cache= "sync && sh -c 'echo 3 > /proc/sys/vm/drop_caches'"
+#    subprocess.Popen(cmd_free_cache, shell=True)
 
 def iobm_multithread_read(threadName, i):
     out_write = open(outfilename, 'a') #write operation stdout into file "rx.txt"
     size= int(i* 1000) # block size in KB
     if size <= 1000000:
-    	free_drivecache()
-	cmddd= "dd if=/dev/zero of=/home/test/file_"+str(size)+" bs="+ str(size) +"kB count=1 conv=fdatasync oflag=dsync"
+#    	free_drivecache()
+	cmddd= "dd if=/dev/zero of=/home/hemanta.g/iotest/file_"+str(size)+" bs="+ str(size) +"kB count=1 conv=fdatasync oflag=dsync"
         p= subprocess.Popen(cmddd, shell=True, stderr=subprocess.PIPE)
         ts_end= datetime.datetime.now()
         wr= str(p.communicate())+threadName+'\n'
     else:
-	free_drivecache()
-	cmddd= "dd if=/dev/zero of=/home/test/file_1000000 bs=1000000kB count=" + str(i/1000) +" conv=fdatasync oflag=dsync"
+#	free_drivecache()
+	cmddd= "dd if=/dev/zero of=/home/hemanta.g/iotest/file_1000000 bs=1000000kB count=" + str(i/1000) +" conv=fdatasync oflag=dsync"
         p= subprocess.Popen(cmddd, shell=True, stderr=subprocess.PIPE)
         wr= str(p.communicate())+threadName+'\n'
     out_write.write(wr)
