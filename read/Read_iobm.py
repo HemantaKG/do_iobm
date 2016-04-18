@@ -24,23 +24,24 @@ class iobmThread (threading.Thread):
 		if threading.activeCount() <= T+1:
         		iobm_multithread_read(self.name, i)
 			time.sleep(10)
-			
-def free_drivecache():
-    cmd_free_cache= "sync && sh -c 'echo 3 > /proc/sys/vm/drop_caches'"
-    subprocess.Popen(cmd_free_cache, shell=True)
+
+# call free_drivecache() to free drive cache content...		
+#def free_drivecache():
+#    cmd_free_cache= "sync && sh -c 'echo 3 > /proc/sys/vm/drop_caches'"
+#    subprocess.Popen(cmd_free_cache, shell=True)
 
 def iobm_multithread_read(threadName, i):
     out_write = open(outfilename, 'a') #write operation stdout into file "rx.txt"
     size= int(i* 1000) # block size in KB
     if size <= 1000000:
-    	free_drivecache()
-        cmddd= "dd if=/home/test/file"+str(size)+" of=/dev/null bs="+str(size)+"kB count=1"
+#    	free_drivecache()
+        cmddd= "dd if=/home/hemanta.g/file"+str(size)+" of=/tmp/file"+str(size) + " bs="+str(size)+"kB count=1"
         p= subprocess.Popen(cmddd, shell=True, stderr=subprocess.PIPE)
         ts_end= datetime.datetime.now()
         wr= str(p.communicate())+threadName+'\n'
     else:
-	free_drivecache()
-        cmddd= "dd if=/home/text/file1000000 of=/dev/null bs=1000000kB count="+str(i/1000)
+#	free_drivecache()
+        cmddd= "dd if=/home/hemanta.g/file1000000 of=/tmp/file1000000 bs=1000000kB count="+str(i/1000)
         p= subprocess.Popen(cmddd, shell=True, stderr=subprocess.PIPE)
         wr= str(p.communicate())+threadName+'\n'
     out_write.write(wr)
